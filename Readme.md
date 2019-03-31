@@ -9,7 +9,7 @@ This repo contains OpenWeatherAPI tests
 	`Path` = "C:\git"
 	 Then do Git Clone https://github.com/Suresh0607/APITestingRepo.git
 	
-2.   Set the `Path` value in `Path`\`APITestingRepo\WeatherAPI\WeatherAPI\app.config` 
+2.   Set the `Path` value in `Path``\APITestingRepo\WeatherAPI\WeatherAPI\app.config` 
      to "C:\git"
 
 3.   Set the `Path` value in `Path`\APITestingRepo\TestExecution.bat` to `C:\git`
