@@ -5,7 +5,7 @@ using RestSharp;
 using Newtonsoft.Json.Linq;
 using AventStack.ExtentReports;
 using System.Configuration;
-using System.Collections.Specialized;
+
 
 namespace APITesting
 {
@@ -26,8 +26,8 @@ namespace APITesting
 
             dynamic api = JObject.Parse(response.Content);
             var categories = api.list;
-            Dictionary<string, int> Days_Temp = new Dictionary<string, int>();
-            Dictionary<string, int> SummyDays = new Dictionary<string, int>();
+            Dictionary<string, int> daysTemp = new Dictionary<string, int>();
+            Dictionary<string, int> sunnyDays = new Dictionary<string, int>();
 
             foreach (var item in categories)
             {
@@ -38,38 +38,34 @@ namespace APITesting
                 if (tempDegree > temperature)
                 {
                     string tdate = item.dt_txt;
-                    string _Date = tdate.Split(' ')[0];
+                    string tempDate = tdate.Split(' ')[0];
+                    string d = Convert.ToDateTime(tempDate).ToString("dddd, dd MMMM yyyy");
 
-                    int ttemp = tempinDegrees;
-                    string d = Convert.ToDateTime(_Date).ToString("dddd, dd MMMM yyyy");
-
-                    if (!Days_Temp.ContainsKey(d))
-                        Days_Temp.Add(d, ttemp);
+                    if (!daysTemp.ContainsKey(d))
+                        daysTemp.Add(d, tempDegree);
                 }
 
                 int cloud_status = item.clouds.all;
 
                 if (cloud_status == 0)
                 {
-                    string tdate = item.dt_txt;
-                    string _Date = tdate.Split(' ')[0];
+                    string csdate = item.dt_txt;
+                    string csDate = csdate.Split(' ')[0];
 
-                    string d = Convert.ToDateTime(_Date).ToString("dddd, dd MMMM yyyy");
+                    string cloud_status_date = Convert.ToDateTime(csDate).ToString("dddd, dd MMMM yyyy");
 
-                    if (!SummyDays.ContainsKey(d))
-                        SummyDays.Add(d, cloud_status);
+                    if (!sunnyDays.ContainsKey(cloud_status_date))
+                        sunnyDays.Add(cloud_status_date, cloud_status);
                 }
             }
 
-            foreach (KeyValuePair<string, int> item in Days_Temp)
+            foreach (KeyValuePair<string, int> item in daysTemp)
             {
                 Console.WriteLine("Date:--" + item.Key + "       Temperature:--" + item.Value);
                 test.Log(Status.Info, "Date:--" + item.Key + "       Temperature:--" + item.Value);
             }
 
-            test.Log(Status.Info, "Total Sunny Days :--" + SummyDays.Count);
-
-
+            test.Log(Status.Info, "Total Sunny Days :--" + sunnyDays.Count);
             rep.Flush();
         }
 
