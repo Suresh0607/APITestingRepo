@@ -17,13 +17,14 @@ This repo contains OpenWeatherAPI tests
 
 ## RUN
 
-Normal Run:
+Build the Project 
 
-Do the MSBuild 
-Open Command Prompt 
-Add Env 
->path = %path%;C:\Program Files (x86)\MSBuild\14.0\Bin
->msbuild 'Path'\APITestingRepo\WeatherAPI\WeatherAPI\APITesting.csproj
+	Open Command Prompt 
+	Add Env 
+	>path = %path%;C:\Program Files (x86)\MSBuild\14.0\Bin
+	>msbuild 'Path'\APITestingRepo\WeatherAPI\WeatherAPI\APITesting.csproj
+
+Normal Run:
 
 Run the 'TestExecution.bat' in `Path`\`APITestingRepo\TestExecution.bat`
 Check the Results in 
