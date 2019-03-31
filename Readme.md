@@ -33,7 +33,7 @@ Check the Results in
 Schedule Run for Every Hour :
 
 1.  
-	Run the following Command in the command Promt to Create a Scedule Task which runs every 1 
+	Run the following Command in the command Promt to Create a Scedule Task which runs every 1 hour
 
 	Modify the `Path`
 
