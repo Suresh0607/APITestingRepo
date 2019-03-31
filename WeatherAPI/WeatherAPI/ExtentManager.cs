@@ -26,10 +26,13 @@ namespace APITesting
             if (extent == null)
             {
                 string reportFile = DateTime.Now.ToString().Replace("/", "_").Replace(":", "_").Replace(" ", "_") + ".html";
-                htmlReporter = new ExtentHtmlReporter(@"C:\git\WeatherAPI\TestReport\" + "Report" + reportFile);
+                //htmlReporter = new ExtentHtmlReporter(@"C:\git\WeatherAPI\TestReport\" + "Report" + reportFile);
+                string testRptPath = ConfigurationManager.AppSettings["TestReport"];
+                string extenConfigFile = ConfigurationManager.AppSettings["ExtenConfigFile"];
+                htmlReporter = new ExtentHtmlReporter(@testRptPath + "Report" + reportFile);
                 extent = new ExtentReports();
                 extent.AttachReporter(htmlReporter);
-                htmlReporter.LoadConfig(@"C:\git\WeatherAPI\WeatherAPI\extent-config.xml");
+                htmlReporter.LoadConfig(@extenConfigFile);
             }
             return extent;
         }
