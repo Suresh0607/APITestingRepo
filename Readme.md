@@ -44,8 +44,8 @@ Schedule Run for Every Hour :
 		
 
 2. 
-     TeamCity 
+     Can be scheduled using TeamCity 
 
 3.
-     Jenkins
+     Can be scheduled using Jenkins
 
